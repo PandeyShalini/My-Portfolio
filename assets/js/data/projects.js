@@ -15,6 +15,6 @@ export default [
     challenge: "Minimizing LLM hallucinations in high-stakes document retrieval and ensuring that citations point to the exact page and paragraph in large PDFs.",
     solution: "Developed a hybrid retrieval system using Pinecone for vector search combined with Cohere for re-ranking, and implemented a custom PDF coordinate mapping system for precise grounding.",
     live: "",
-    code: "https://github.com/PandeyShalini",
+    code: "",
   },
 ];
