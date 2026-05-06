@@ -9,13 +9,17 @@ export const initNavbar = () => {
 
     if (!navContainer || !mobileToggle) return;
 
+    let isMenuOpen = false;
     const toggleMenu = (show) => {
+        isMenuOpen = show;
         if (show) {
-            mobileMenu.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-10');
-            document.body.style.overflow = 'hidden';
+            mobileMenu.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-full');
+            mobileMenu.classList.add('opacity-100', 'translate-y-0');
+            document.body.classList.add('no-scroll');
         } else {
-            mobileMenu.classList.add('opacity-0', 'pointer-events-none', 'translate-y-10');
-            document.body.style.overflow = '';
+            mobileMenu.classList.add('opacity-0', 'pointer-events-none', 'translate-y-full');
+            mobileMenu.classList.remove('opacity-100', 'translate-y-0');
+            document.body.classList.remove('no-scroll');
         }
     };
 
@@ -24,14 +28,22 @@ export const initNavbar = () => {
     mobileLinks.forEach(link => link.addEventListener('click', () => toggleMenu(false)));
 
     window.addEventListener('scroll', () => {
+        if (isMenuOpen) return;
+
         if (window.scrollY > 50) {
             navContainer.classList.add('bg-slate-950/80', 'backdrop-blur-md', 'border-b', 'border-white/5');
-            navContainer.querySelector('.container').classList.remove('py-4');
-            navContainer.querySelector('.container').classList.add('py-3');
+            const container = navContainer.querySelector('.container');
+            if (container) {
+                container.classList.remove('py-4');
+                container.classList.add('py-3');
+            }
         } else {
             navContainer.classList.remove('bg-slate-950/80', 'backdrop-blur-md', 'border-b', 'border-white/5');
-            navContainer.querySelector('.container').classList.remove('py-3');
-            navContainer.querySelector('.container').classList.add('py-4');
+            const container = navContainer.querySelector('.container');
+            if (container) {
+                container.classList.remove('py-3');
+                container.classList.add('py-4');
+            }
         }
     });
 };
