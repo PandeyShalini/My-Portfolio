@@ -8,7 +8,7 @@ export const initCertificates = () => {
     grid.innerHTML = ''; // Clear grid before populating
     certificates.forEach((cert, index) => {
         const certEl = document.createElement('div');
-        certEl.className = 'glass-card p-6 rounded-3xl flex items-center justify-between group hover:border-indigo-500/30 transition-all duration-300 reveal-up';
+        certEl.className = 'glass-card p-6 rounded-3xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 group hover:border-indigo-500/30 transition-all duration-300 reveal-up';
         certEl.style.transitionDelay = `${index * 50}ms`;
         
         certEl.innerHTML = `
